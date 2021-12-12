@@ -10,11 +10,13 @@
 #include "utils.h"
 
 #include <iostream> // -> < header file> --> the compìler knows where this header is located (usually standard libs)
+// containers 
 #include <list>
 #include <map>
 #include <memory> // header file to define smart pointer classes and functions --> from the std lib
 #include <set>
 #include <vector>
+#include <algorithm>
 
 // this main to train cpp concepts has to be read from the bottom to the top
 
@@ -29,7 +31,7 @@ int main()
 {
     // test selector
     int Test;
-    Test = 100;
+    Test = 101;
 
     // EXCEPTION HANDLING - using classes to define exceptions;
     // to make the type of the exception thrown very explicit and also very specific- We will throw objects!
@@ -530,13 +532,75 @@ int main()
     }
 
     
+	// LIST - Container of the Standard Template Library (STL) ("std::")
+	// List --> Lists are sequence containers that allow constant time insert and erase operations anywhere within the sequence, and iteration in both directions.
+	// List containers are implemented as doubly-linked lists; Doubly linked lists can store each of the elements they contain in different and unrelated storage locations. 
+	// The ordering is kept internally by the association to each element of a link to the element preceding it and a link to the element following it.
+	// Compared to other base standard sequence containers (array, vector and deque), lists perform better in inserting, extracting and moving elements in any position within the container for which an iterator has already been obtained, 
+	// and therefore in algorithms that make use sorting algorithms.
+	// The main drawback of lists and forward_lists compared to these other sequence containers is that they lack direct access to the elements by their position; 
+	// For example, to access the sixth element in a list, one has to iterate from a known position (like the beginning or the end) to that position,
+	if(Test == 101) {
+		std::list<int> ListTest1;
+		ListTest1.push_back(1);
+		ListTest1.push_back(3);
+		ListTest1.push_back(5);
+		ListTest1.push_back(7);
+		ListTest1.push_back(9);
+		
+		// print elements --> function defined in utils.h
+		showList(ListTest1);
+		std::cout << "Size of the list is: " << ListTest1.size() <<'\n';
+		
+		// get the direct reference of the front of the list:
+		std::cout << "First Element of the List is: " << ListTest1.front() <<'\n';
+		// get the last reference of the end of the list:
+		std::cout << "Last Element of the List is: " << ListTest1.back() <<'\n';
+		
+		// remove last element of the list
+		ListTest1.pop_back();
+		std::cout << "Last Element of the List has been removed \n";
+		showList(ListTest1);
+		// remove first element of the list
+		ListTest1.pop_front();
+		std::cout << "Last Element of the List has been removed \n";
+		showList(ListTest1);
+		
+		
+		// look for an specfic element in a list using "find()"
+		// find() is used for cointaires and can be found in <algorithm>
+		std::list<int>::iterator itElement1Search;
+		std::list<int>::iterator itElement2Search;
+		itElement1Search = std::find(ListTest1.begin(), ListTest1.end(), 221312);
+		itElement2Search = std::find(ListTest1.begin(), ListTest1.end(), 3);
+		
+		// check if iterator is pointing to the end of the list
+		// that would meant that that element was not found
+		if (itElement1Search == ListTest1.end())
+		{
+			std::cout<< "Element was not found in the list \n";
+		}
+		else
+		{
+			std::cout<< "The list contains that element \n";
+		}
+		
+		if (itElement2Search == ListTest1.end())
+		{
+			std::cout<< "Element was not found in the list \n";
+		}
+		else
+		{
+			std::cout<< "The list contains that element \n";
+		}
+	}
 	
-	// Containers of the Standard Template Library (STL) ("std::")
+	// SET - Container of the Standard Template Library (STL) ("std::")
 	// Set --> Sets are containers that store UNIQUE elements (CANNT BE REPEATED) following a specific order.
 	// The value of the ELEMENTS in a set CANNT BE MODIFIED once in the container (the elements are always const), but they can be inserted or removed from the container.
 	// Elements are sorted following a specific strict weak ordering criterion.
 	// Used for binary search trees
-	if(Test = 100) {
+	if(Test == 100) {
 		
 
 		std::set<int> Set1; // this set container will contain int elements
@@ -635,6 +699,8 @@ int main()
         for(auto it = money.begin(); it != money.end(); it++) {
             std::cout << "the key is: " << it->first << " ,  and the vallue is " << it->second << std::endl;
         }
+		
+	
     };
 
     // Containers of the Standard Template Library (STL) ("std::")

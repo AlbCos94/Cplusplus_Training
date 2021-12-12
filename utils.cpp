@@ -1,4 +1,5 @@
 #include "utils.h"
+#include <iostream>
 
 void display_all_from_ClassA(ClassA& Object)
 {
@@ -16,3 +17,13 @@ void display_all_from_ClassA(ClassA& Object)
     std::cout << Object.attrib_Struct.memberStruct_A2 << std::endl;
     std::cout << Object.attrib_Struct.memberStruct_A3 << std::endl;
 }
+
+// print elements
+void showList(std::list <int> g)
+{
+	std::cout << "List elements: ";
+	std::list<int>::iterator it;
+	for(it = g.begin(); it != g.end(); ++it)
+		std::cout << '\t' << *it;
+	std::cout << '\n';
+};
