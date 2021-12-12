@@ -1,5 +1,5 @@
 #pragma once
-#include <classA.h>
+#include "classA.h"
 // pragma once --> better alternative in comparison to what it was used in classA.h
 
 // this class is a friend Class of Class A.

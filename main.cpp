@@ -29,7 +29,7 @@ int main()
 {
     // test selector
     int Test;
-    Test = 25;
+    Test = 100;
 
     // EXCEPTION HANDLING - using classes to define exceptions;
     // to make the type of the exception thrown very explicit and also very specific- We will throw objects!
@@ -186,7 +186,7 @@ int main()
         // -->heap can be safetely destroyed
 
         std::shared_ptr<int> p1{ new int{ 100 } };
-        std::cout << "Valule can be changes " << std::endl;
+        std::cout << "Valule can be changed " << std::endl;
         std::cout << "Valule right now is: " << *p1 << std::endl;
         *p1 = 200;
         std::cout << "Valule is changed to: " << *p1 << std::endl;
@@ -529,7 +529,100 @@ int main()
         value = ObjectClassB.get_attribute_A2();
     }
 
-    // Containers of the Standard Template Library (STL) ("std::")
+    
+	
+	// Containers of the Standard Template Library (STL) ("std::")
+	// Set --> Sets are containers that store UNIQUE elements (CANNT BE REPEATED) following a specific order.
+	// The value of the ELEMENTS in a set CANNT BE MODIFIED once in the container (the elements are always const), but they can be inserted or removed from the container.
+	// Elements are sorted following a specific strict weak ordering criterion.
+	// Used for binary search trees
+	if(Test = 100) {
+		
+
+		std::set<int> Set1; // this set container will contain int elements
+		// Check if the container "set" is empty
+		if (Set1.empty()) {
+			std::cout << "Our set container is empty " << std::endl;
+		}
+		
+		// INSERT METHOD
+		Set1.insert(1); // insert method used to insert a new element
+		Set1.insert(11);
+		Set1.insert(111);
+		Set1.insert(2222);
+		Set1.insert(33333); // this one will be the last element of the set
+		Set1.insert(0); // this one will be the second element
+		Set1.insert(-1); // this one will be one the first element of the set
+		int c = 1;
+		std::cout <<  "---- Set num 1: -----" << std::endl;
+		for (auto itElemSet = Set1.begin(); itElemSet!=Set1.end(); itElemSet++) {
+			
+			std::cout << "Element num " << c << " of the Set, has as value:  " << *itElemSet << std::endl;
+			c++;
+		}
+		if (Set1.empty()) {
+			std::cout << "Our set container is empty. " << std::endl;
+		}
+		// Check if an element was already there when inserting it
+		int num_to_insert = 0;
+		// we can output a pair after calling the method insert that gives us information about the success of the operation
+		std::pair<std::set<int>::iterator, bool> Pair1 = Set1.insert(num_to_insert);
+		// First element of the pair --> iterator pointing to the element that has been inserted
+		// Second element of the pair --> true if that element is new, so it will be added
+		if (!Pair1.second) {
+			std::cout << "Element "<< num_to_insert << " already in the set." << std::endl;
+		}
+		num_to_insert = 666;
+		std::pair<std::set<int>::iterator, bool> Pair2 = Set1.insert(num_to_insert);
+		if (!Pair2.second) {
+			std::cout << "Element "<< num_to_insert << " already in the set." << std::endl;
+		}
+		else{
+			std::cout << "Element "<< num_to_insert << " new in the set." << std::endl;
+		}
+		
+		// ERASE METHOD
+		
+		std::cout <<  "---- Set num 2: -----" << std::endl;
+		for (auto itElemSet = Set1.begin(); itElemSet!=Set1.end(); itElemSet++) {
+			std::cout <<  *itElemSet << std::endl;
+		}
+		// We can just erase an element by giving its value as parameter
+		Set1.erase(666);
+		std::cout <<  "---- Set num 3: -----" << std::endl;
+		for (auto itElemSet = Set1.begin(); itElemSet!=Set1.end(); itElemSet++) {
+			std::cout <<  *itElemSet << std::endl;
+		}
+		// We can erase by giving the corresponding iterator
+		std::set<int>::iterator it2 = Set1.begin();
+		it2++; // we are gonna delete the second one
+		Set1.erase(it2);
+		std::cout <<  "---- Set num 4: -----" << std::endl;
+		for (auto itElemSet = Set1.begin(); itElemSet!=Set1.end(); itElemSet++) {
+			std::cout <<  *itElemSet << std::endl;
+		}
+		
+		// We can erase a set of elements by giving the corresponding first iterator and last iterator of the elements we want to delete ( the last one is not deleted) 
+		// [firstIt, lastIt]
+		std::set<int>::iterator it3 = Set1.begin(); // pointing to 1st element
+		std::set<int>::iterator it4 = Set1.begin(); // pointing to 1st element
+		it3++; 
+		it3++;// we are gonna delete the 3erd until the... 
+		it4++; 
+		it4++;
+		it4++;
+		it4++;// ..> 5th (this one not included)
+		// so elements 3rd and 4th are deleted
+		Set1.erase(it3, it4);
+		std::cout <<  "---- Set num 5: -----" << std::endl;
+		for (auto itElemSet = Set1.begin(); itElemSet!=Set1.end(); itElemSet++) {
+			std::cout <<  *itElemSet << std::endl;
+		}
+		
+		
+	}
+	
+	// Containers of the Standard Template Library (STL) ("std::")
     // Maps = key + value --> a set of "std::pairs" with values "key and value" that are without any order
     if(Test == 10) {
         std::map<std::string, int> money{
