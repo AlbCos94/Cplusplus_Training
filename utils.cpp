@@ -27,3 +27,13 @@ void showList(std::list <int> g)
 		std::cout << '\t' << *it;
 	std::cout << '\n';
 };
+
+// print elements deque
+void showDeque(std::deque <int> de)
+{
+	std::cout << "Deque elements: ";
+	std::deque<int>::iterator it;
+	for(it = de.begin(); it != de.end(); ++it)
+		std::cout << '\t' << *it;
+	std::cout << '\n';
+};

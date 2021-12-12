@@ -12,6 +12,7 @@
 #include <iostream> // -> < header file> --> the compìler knows where this header is located (usually standard libs)
 // containers 
 #include <list>
+#include <deque>
 #include <map>
 #include <memory> // header file to define smart pointer classes and functions --> from the std lib
 #include <set>
@@ -31,7 +32,7 @@ int main()
 {
     // test selector
     int Test;
-    Test = 101;
+    Test = 102;
 
     // EXCEPTION HANDLING - using classes to define exceptions;
     // to make the type of the exception thrown very explicit and also very specific- We will throw objects!
@@ -532,6 +533,61 @@ int main()
     }
 
     
+	// DEQUE - Container of the Standard Template Library (STL) ("std::")
+	// Deque --> irregular acronym of double-ended queue. 
+	// Double-ended queues are sequence containers with dynamic sizes that can be expanded or contracted on both ends (either its front or its back).
+	// They provide a functionality similar to vectors, but with efficient insertion and deletion of elements also at the beginning of the sequence, and not only at its end. 
+	// But, unlike vectors, deques are not guaranteed to store all its elements in contiguous storage locations: accessing elements in a deque by offsetting a pointer to another element causes undefined behavior.
+	// While Vectors use a single array that needs to be occasionally reallocated for growth, the elements of a deque can be scattered in different chunks of storage, with the container keeping the necessary information internally to provide direct access to any of its elements in constant time and with a uniform sequential interface (through iterators). 
+	// Therefore, deques are a little more complex internally than vectors, but this allows them to grow more efficiently under certain circumstances, especially with very long sequences, where reallocations become more expensive.
+	// For operations that involve frequent insertion or removals of elements at positions other than the beginning or the end, deques perform worse and have less consistent iterators and references than lists and forward lists.
+	if (Test == 102)
+	{
+		// in utils.h we have defined out own alocator alocator
+
+		// vector vs deque
+		std::vector<int, MyAlloc<int>> v1 = {1};
+		
+		// size of the vector:
+		std::cout << "Capacity vector with 1 element => "<< v1.capacity() <<std::endl;
+		v1.push_back(2);
+		std::cout << "Capacity vector with 2 elements => "<< v1.capacity() <<std::endl;
+		v1.push_back(2);
+		v1.push_back(2);
+		std::cout << "Capacity vector with 4 elements => "<< v1.capacity() <<std::endl; // --> 4
+		v1.push_back(2);
+		std::cout << "Capacity vector with 5 elements => "<< v1.capacity() <<std::endl; // -> 8
+		v1.push_back(2);
+		v1.push_back(2);
+		v1.push_back(2);
+		v1.push_back(2);
+		v1.push_back(2);
+		std::cout << "Capacity vector with 10 elements => "<< v1.capacity() <<std::endl; // --> 16... always it is doubled the capacity of the vector when it is arrived to max capacity --> 1,2,4,8, 16
+
+		
+		std::deque<int> d1 = {1};
+		// size of the deque:
+		std::cout << "Max Size with one element => "<< d1.max_size() <<std::endl;
+		d1.push_back(22);
+		d1.push_back(333);
+		d1.push_back(4444);
+		showDeque(d1);
+		// at() --> returns the element at that position in the contaqined
+		std::cout << "Element at position 3 is => "<< d1.at(2)<< std::endl;
+		// we can use as well teh brackets operator
+		std::cout << "Element at position 2 is => "<< d1[1]<< std::endl;
+
+		//insert an element in an specific position
+		std:deque<int>::iterator itDe = d1.begin(); // iterator to indicate the position of a deque
+		itDe++;
+		itDe++; // 3rd position
+		d1.insert(itDe, 66); // we are gonna insert a 66 in the 3rd position of the deque
+		showDeque(d1);
+
+		
+	}
+	
+	
 	// LIST - Container of the Standard Template Library (STL) ("std::")
 	// List --> Lists are sequence containers that allow constant time insert and erase operations anywhere within the sequence, and iteration in both directions.
 	// List containers are implemented as doubly-linked lists; Doubly linked lists can store each of the elements they contain in different and unrelated storage locations. 
@@ -761,6 +817,25 @@ int main()
         // "clear()" --> clean the content of the vector
         vec2.clear();
         std::cout << vec2.size() << std::endl;
+		
+		std::vector<int, MyAlloc<int>> v1 = {1};
+		// size of the vector:
+		std::cout << "Capacity vector with 1 element => "<< v1.capacity() <<std::endl;
+		v1.push_back(2);
+		std::cout << "Capacity vector with 2 elements => "<< v1.capacity() <<std::endl;
+		v1.push_back(2);
+		v1.push_back(2);
+		std::cout << "Capacity vector with 4 elements => "<< v1.capacity() <<std::endl; // --> 4
+		v1.push_back(2);
+		std::cout << "Capacity vector with 5 elements => "<< v1.capacity() <<std::endl; // -> 8
+		v1.push_back(2);
+		v1.push_back(2);
+		v1.push_back(2);
+		v1.push_back(2);
+		v1.push_back(2);
+		std::cout << "Capacity vector with 10 elements => "<< v1.capacity() <<std::endl; // --> 16... always it is doubled the capacity of the vector whe arrive to max capacity --> 1,2,4,8, 16
+		
+		
     }
 
     // test of inheritance for Classes
